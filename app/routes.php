@@ -11,7 +11,21 @@
 |
 */
 
-Route::get('/', function()
+//HOMEPAGE
+Route::get('/', 'PagesController@index');
+//ABOUT US
+Route::get('about', 'PagesController@about');
+//MEET OUR TEAM
+Route::get('team', 'PagesController@team');
+//SERVICES & REGISTRATION
+Route::get('services', 'PagesController@services');
+//PROJECTS
+Route::get('projects/{filter?}/{single?}', 'PagesController@projects');
+//CONTACT
+Route::get('contact', 'PagesController@contact');
+
+//404 AND ERROR
+App::missing(function($exception)
 {
-	return View::make('hello');
+    return Response::view('pages.404', array(), 404);
 });
