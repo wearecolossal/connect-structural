@@ -62,7 +62,7 @@ Projects
 			@foreach(Project::where('category_id', $category->id)->orderby('order', 'asc')->get() as $project)
 			<div class="project-list col-md-4">
 				<a href="{{ URL::to('projects/'.$category->id.'/'.urlencode(strtolower(str_replace(' ', '-', $category->name))).'/'.$project->id.'/'.urlencode(strtolower(str_replace(' ', '-', $project->name)))) }}"><img src="{{ checkThumbnail($project->thumbnail) }}" alt="" /></a>
-				<h4><a href="#">{{ $project->name }}</a></h4>
+				<h4><a href="{{ URL::to('projects/'.$category->id.'/'.urlencode(strtolower(str_replace(' ', '-', $category->name))).'/'.$project->id.'/'.urlencode(strtolower(str_replace(' ', '-', $project->name)))) }}">{{ $project->name }}</a></h4>
 			</div>
 			@endforeach
 		</div>
@@ -70,11 +70,19 @@ Projects
 
 	{{-- PROJECT OVERVIEW VIEW --}}
 	@else
-	
-		<div class="jumbotron">
-			<h2 style="color:#ccc;">PENDING</h2>
-		</div>
 		
+		<h3>Projects</h3>
+		
+		<div class="clearfix"></div>
+		<div class="row">
+		{{-- ITERATE THROUGH CATEGORIES --}}
+		@foreach(Category::all() as $category)
+			<div class="project-list col-md-4">
+				<a href="{{ URL::to('projects/'.$category->id.'/'.urlencode(strtolower(str_replace(' ', '-', $category->name))).'/'.Project::where('category_id', $category->id)->orderby('created_at', 'desc')->first()->id.'/'.urlencode(strtolower(str_replace(' ', '-', Project::where('category_id', $category->id)->orderby('created_at', 'desc')->first()->name)))) }}"><img src="{{ checkThumbnail(Project::where('category_id', $category->id)->orderby('created_at', 'desc')->first()->thumbnail) }}" alt="" /></a>
+				<h4><a href="{{ URL::to('projects/'.$category->id.'/'.urlencode(strtolower(str_replace(' ', '-', $category->name))).'/'.Project::where('category_id', $category->id)->orderby('created_at', 'desc')->first()->id.'/'.urlencode(strtolower(str_replace(' ', '-', Project::where('category_id', $category->id)->orderby('created_at', 'desc')->first()->name)))) }}">{{ $category->name }}</a></h4>
+			</div>
+		@endforeach
+		</div>
 	@endif
 
 @stop
