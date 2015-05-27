@@ -23,7 +23,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => '104.131.119.157',
-			'database'  => 'connect-structural',
+			'database'  => 'forge',
 			'username'  => 'forge',
 			'password'  => 'bN1OQrBXKPyVWuTpRMrs',
 			'charset'   => 'utf8',
