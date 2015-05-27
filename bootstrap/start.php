@@ -26,9 +26,12 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('homestead'),
+	'local' => array('Tarun-Krishnan.local'),
+	'production' => array('connect-structural'),
+	'remote-tarun' => array('Taruns-MacBook-Pro.local')
 
 ));
+
 
 /*
 |--------------------------------------------------------------------------
