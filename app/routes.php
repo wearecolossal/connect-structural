@@ -2,13 +2,8 @@
 
 /*
 |--------------------------------------------------------------------------
-| Application Routes
+| Pages Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
 */
 
 //HOMEPAGE
@@ -20,9 +15,30 @@ Route::get('team', 'PagesController@team');
 //SERVICES & REGISTRATION
 Route::get('services', 'PagesController@services');
 //PROJECTS
-Route::get('projects/{filter?}/{single?}', 'PagesController@projects');
+Route::get('projects/{category_id?}/{category_name?}/{single_id?}/{single_name?}', 'PagesController@projects');
 //CONTACT
 Route::get('contact', 'PagesController@contact');
+
+/*
+|--------------------------------------------------------------------------
+| Admin Section
+|--------------------------------------------------------------------------
+*/
+
+//LOGIN ROUTES
+Route::resource('login', 'SessionsController');
+//LOGOUT
+Route::get('logout', 'SessionsController@destroy');
+//ADMIN HOMEPAGE
+Route::get('admin', 'AdminController@index');
+//GET SINGLE PROJECT
+Route::get('admin/project/{id}', 'AdminController@project');
+//DELETE PROJECT PHOTO
+Route::get('admin/project/photo/{id}/delete', 'AdminController@deletePhoto');
+//HASH PASSWORD
+Route::get('hash-password/{password}', 'AdminController@hashPassword');
+
+
 
 //404 AND ERROR
 App::missing(function($exception)

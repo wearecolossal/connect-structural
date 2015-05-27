@@ -3,12 +3,12 @@
 @section('title')
 Projects
 {{-- SHOW FILTER IF SET --}}
-@if(isset($filter))
-| {{ $cleanFilter }}
+@if(isset($category))
+| {{ $category->name }}
 @endif
 {{-- SHOW TITLE OF PROJECT DETAIL IF SET --}}
 @if(isset($single))
-| {{ $cleanSingle }}
+| {{ $single->name }}
 @endif
 @stop
 	
@@ -19,63 +19,52 @@ Projects
 	@if(isset($single))
 		
 		<div class="row">
-			<div class="col-md-7 proj-hero">
-				<img src="{{ URL::asset('library/img/img-proj-davis-hero.jpg') }}" alt="" />
-			</div>
+			@if(ProjectPhoto::where('project_id', $single->id)->first())
+				<div class="col-md-7 proj-hero">
+					<img src="{{ URL::to('uploads') }}/{{ ProjectPhoto::where('project_id', $single->id)->orderby('id', 'asc')->first()->image }}" alt="" />
+				</div>
+			@endif
 			<div class="col-md-5 proj-details">
-				<h3>{{ $cleanFilter }}</h3>
+				<h3>{{ $category->name }}</h3>
 				<div class="proj-description">
-					<h4>{{ $cleanSingle }}</h4>
-					<p>The Davis Building is located in downtown Dallas, Texas.  Included on the National Register of Historic Places, the Davis Building was originally built in the 1920's as the headquarters for Republic National Bank. The re-development of this building as a residential facility includes 183 lofts and street level retail as well as a new rooftop pool and cabana. </p>
+					<h4>{{ $single->name }}</h4>
+					<p>{{ $single->description }}</p>
 					<div class="clearfix"></div>
+					@if(ProjectPhoto::where('project_id', $single->id)->first())
 					<div class="row">
-						<div class="col-md-6 proj-nav"><a href="">&lsaquo; Previous Image</a></div>
-						<div class="col-md-6 proj-nav text-right"><a href="">Next Image &rsaquo;</a></div>
-						<div class="col-md-4"><a href="#"><img src="{{ URL::asset('library/img/img-proj-detail-davis-01.jpg') }}" alt="" /></a></div>
-						<div class="col-md-4"><a href="#"><img src="{{ URL::asset('library/img/img-proj-detail-davis-02.jpg') }}" alt="" /></a></div>
-						<div class="col-md-4"><a href="#"><img src="{{ URL::asset('library/img/img-proj-detail-davis-03.jpg') }}" alt="" /></a></div>
+						<div class="col-md-6 proj-nav"><a class="prev_img">&lsaquo; Previous Image</a><br /></div>
+						<div class="col-md-6 proj-nav text-right"><a class="next_img">Next Image &rsaquo;</a><br /><br /></div>
+						{{-- ITERATE THROUGH PROJECT PHOTOS --}}
+						<span class="hidden">{{ $iterator = 1; }}</span>
+						@foreach(ProjectPhoto::where('project_id', $single->id)->orderby('id', 'asc')->get() as $photo)
+							<div class="col-md-4"><a class="
+							@if($iterator == 1)
+							active
+							@endif
+							project-photo" data-iterator="{{ $iterator++ }}" data-photo="{{ URL::asset('uploads/'.$photo->image) }}"><img src="{{ URL::asset('uploads/thumbnails/'.$photo->thumbnail) }}" alt="" /></a><br /><br /></div>
+						@endforeach
 					</div>
 					<div class="clearfix"></div>
+					@endif
 				</div>
 			</div>
 		</div>
 	
 	
 	{{-- PROJECT FILTER VIEW--}}
-	@elseif(isset($filter))
+	@elseif(isset($category))
 	
-		<h3>{{ $cleanFilter }}</h3>
+		<h3>{{ $category->name }}</h3>
 		
 		<div class="clearfix"></div>
 		<div class="row">
+			{{-- ITERATE THROUGH PROJECTS OF THIS CATEGORY --}}
+			@foreach(Project::where('category_id', $category->id)->orderby('order', 'asc')->get() as $project)
 			<div class="project-list col-md-4">
-				<a href="#"><img src="{{ URL::asset('library/img/img-proj-archer.jpg') }}" alt="" /></a>
-				<h4><a href="#">ARCHER COUNTY COURTHOUSE</a></h4>
+				<a href="{{ URL::to('projects/'.$category->id.'/'.urlencode(strtolower(str_replace(' ', '-', $category->name))).'/'.$project->id.'/'.urlencode(strtolower(str_replace(' ', '-', $project->name)))) }}"><img src="{{ checkThumbnail($project->thumbnail) }}" alt="" /></a>
+				<h4><a href="#">{{ $project->name }}</a></h4>
 			</div>
-			<div class="project-list col-md-4">
-				<a href="#"><img src="{{ URL::asset('library/img/img-proj-atom.jpg') }}" alt="" /></a>
-				<h4><a href="#">ATOMS COMPLEX</a></h4>
-			</div>
-			<div class="project-list col-md-4">
-				<a href="#"><img src="{{ URL::asset('library/img/img-proj-continental.jpg') }}" alt="" /></a>
-				<h4><a href="#">CONTINENTAL BUILDING</a></h4>
-			</div>
-			<div class="project-list col-md-4">
-				<a href="#"><img src="{{ URL::asset('library/img/img-proj-dallas-power.jpg') }}" alt="" /></a>
-				<h4><a href="#">DALLAS POWER AND LIGHT</a></h4>
-			</div>
-			<div class="project-list col-md-4">
-				<a href="{{ URL::to('projects/'.$filter.'/davis-building') }}"><img src="{{ URL::asset('library/img/img-proj-davis.jpg') }}" alt="" /></a>
-				<h4><a href="#">DAVIS BUILDING</a></h4>
-			</div>
-			<div class="project-list col-md-4">
-				<a href="#"><img src="{{ URL::asset('library/img/img-proj-fidelity.jpg') }}" alt="" /></a>
-				<h4><a href="#">FIDELITY UNION BUILDING - MOSAIC LOFT APARTMENTS</a></h4>
-			</div>
-			<div class="project-list col-md-4">
-				<a href="#"><img src="{{ URL::asset('library/img/img-proj-santa-fe.jpg') }}" alt="" /></a>
-				<h4><a href="#">SANTA FE #4 BUILDING -ALOFT HOTEL</a></h4>
-			</div>
+			@endforeach
 		</div>
 		<div class="clearfix"></div>
 
@@ -91,5 +80,144 @@ Projects
 @stop
 
 @section('script')
-
+@if(isset($single))
+	@if(ProjectPhoto::where('project_id', $single->id)->first())
+	<script>
+		$(document).ready(function(){
+			//Get the amount of photos for the project
+			var count = {{ ProjectPhoto::where('project_id', $single->id)->count() }};
+			//Initiate current counter as 0, for navigation
+			var current = 1;
+			
+			
+			
+			//Toggle Main photo by clicking on the nav
+			$('a.project-photo').click(function(){
+				
+				
+				//Get the original photo
+				var photo = $(this).data('photo');
+				//UPDATE MAIN PHOTO
+				setTimeout(function(){
+					$('.proj-hero img').fadeOut();
+				}, 200);
+				setTimeout(function(){
+					$('.proj-hero img').attr('src', photo);
+				}, 600);
+				setTimeout(function(){
+					$('.proj-hero img').fadeIn();
+				}, 1000);
+				
+				//set current image chosen
+				current = $(this).data('iterator');
+				
+				//Set current image as active
+				$('a.project-photo').removeClass('active');
+				$(this).addClass('active');
+			});
+			
+			//Go to previous image
+			$('a.prev_img').click(function(){
+				//If current iterator is greater than 2
+				if(current >= 2) {
+					//get prev image
+					var prev = current - 1;
+					//get the image to toggle
+					var photo = $('a.project-photo[data-iterator="'+prev+'"]').data('photo');
+					
+					//UPDATE MAIN PHOTO
+					setTimeout(function(){
+						$('.proj-hero img').fadeOut();
+					}, 200);
+					setTimeout(function(){
+						$('.proj-hero img').attr('src', photo);
+					}, 600);
+					setTimeout(function(){
+						$('.proj-hero img').fadeIn();
+					}, 1000);
+					
+					//set current image chosen
+					current = prev;
+					
+					//Set current image as active
+					$('a.project-photo').removeClass('active');
+					$('a.project-photo[data-iterator="'+prev+'"]').addClass('active');
+					
+				} else {
+					var photo = $('a.project-photo[data-iterator="'+count+'"]').data('photo');
+					
+					//UPDATE MAIN PHOTO
+					setTimeout(function(){
+						$('.proj-hero img').fadeOut();
+					}, 200);
+					setTimeout(function(){
+						$('.proj-hero img').attr('src', photo);
+					}, 600);
+					setTimeout(function(){
+						$('.proj-hero img').fadeIn();
+					}, 1000);
+					
+					//set current image chosen
+					current = count;
+					
+					//Set current image as active
+					$('a.project-photo').removeClass('active');
+					$('a.project-photo[data-iterator="'+current+'"]').addClass('active');
+				}
+			});
+			
+			//Go to next image
+			$('a.next_img').click(function(){
+				//If current iterator is greater than 1 and less than the count of images
+				if((current >= 1) && (current < count)) {
+					//get prev image
+					var next = current + 1;
+					//get the image to toggle
+					var photo = $('a.project-photo[data-iterator="'+next+'"]').data('photo');
+					
+					//UPDATE MAIN PHOTO
+					setTimeout(function(){
+						$('.proj-hero img').fadeOut();
+					}, 200);
+					setTimeout(function(){
+						$('.proj-hero img').attr('src', photo);
+					}, 600);
+					setTimeout(function(){
+						$('.proj-hero img').fadeIn();
+					}, 1000);
+					
+					//set current image chosen
+					current = next;
+					
+					//Set current image as active
+					$('a.project-photo').removeClass('active');
+					$('a.project-photo[data-iterator="'+next+'"]').addClass('active');
+					
+				} else {
+					var photo = $('a.project-photo[data-iterator="1"]').data('photo');
+					
+					//UPDATE MAIN PHOTO
+					setTimeout(function(){
+						$('.proj-hero img').fadeOut();
+					}, 200);
+					setTimeout(function(){
+						$('.proj-hero img').attr('src', photo);
+					}, 600);
+					setTimeout(function(){
+						$('.proj-hero img').fadeIn();
+					}, 1000);
+					
+					//set current image chosen
+					current = 1;
+					
+					//Set current image as active
+					$('a.project-photo').removeClass('active');
+					$('a.project-photo[data-iterator="'+current+'"]').addClass('active');
+				}
+			});
+			
+		});
+	</script>
+	@endif
+@endif
 @stop

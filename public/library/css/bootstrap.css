@@ -2975,7 +2975,7 @@ select[multiple].form-group-lg .form-control {
 .btn {
   display: inline-block;
   margin-bottom: 0;
-  font-weight: normal;
+  font-weight: 300;
   text-align: center;
   vertical-align: middle;
   touch-action: manipulation;
@@ -6815,6 +6815,11 @@ PROJECTS
 .proj-nav a:hover {
   color: #e43d51;
 }
+a.project-photo.active img {
+  border: 2px solid #847c71;
+  box-sizing: border-box;
+  padding: 2px;
+}
 /*=========================
 CONTACT PAGE
 =========================*/
@@ -6829,4 +6834,74 @@ FOOTER
   height: 100px;
   font-size: .79em;
   color: #fff;
+}
+/*=========================
+ADMIN
+=========================*/
+.login.well {
+  border-radius: 0;
+  padding: 10px 15px 30px;
+  box-shadow: none;
+  background: none;
+  border: 1px solid #ccc;
+}
+.login.well .page-header {
+  padding: 15px 0;
+  margin: 0;
+}
+.login.well input[type="text"],
+.login.well input[type="password"] {
+  border-radius: 0;
+}
+.login.well .form-group {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.login.well label {
+  font-weight: 300;
+  font-size: .7369em;
+  text-transform: uppercase;
+}
+table.project-table {
+  font-size: .843em;
+}
+table.project-table thead th {
+  font-weight: 500;
+  background: #ececec;
+}
+table.project-table tbody td {
+  font-weight: 300;
+  font-size: .85em;
+}
+form.edit-project img {
+  width: 100%;
+  max-width: intrinsic;
+}
+.well.project-photos {
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  border: 1px solid #e1e1e1;
+}
+.well.project-photos h5.page-header {
+  padding-top: 0;
+  margin-top: 0;
+}
+.well.project-photos img {
+  width: 100%;
+  max-width: intrinsic;
+  padding: 0;
+  border-radius: 0;
+}
+.well.project-photos .edit-photo {
+  position: relative;
+}
+.well.project-photos a.delete-photo {
+  border-radius: 1000px;
+  position: absolute;
+  top: -15px;
+  right: 0;
+}
+.well.project-photos a.delete-photo i {
+  padding: 2px 0px;
 }

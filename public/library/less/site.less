@@ -311,6 +311,16 @@ PROJECTS
 	}
 }
 
+a.project-photo {
+	&.active {
+		img {
+			border:2px solid #847c71;
+			box-sizing: border-box;
+			padding: 2px;
+		}
+	}
+}
+
 /*=========================
 CONTACT PAGE
 =========================*/
@@ -328,4 +338,81 @@ FOOTER
 	height: 100px;
 	font-size: .79em; //about 15px;
 	color: #fff;
+}
+
+/*=========================
+ADMIN
+=========================*/
+//Login Panel
+.login.well {
+	border-radius: 0;
+	padding: 10px 15px 30px;
+	box-shadow:none;
+	background: none;
+	border:1px solid #ccc;
+	.page-header {
+		padding: 15px 0;
+		margin: 0;
+	}
+	input[type="text"], input[type="password"] {
+		border-radius: 0;
+	}
+	.form-group {
+		padding-top:15px;
+		padding-bottom:15px;
+	}
+	label {
+		font-weight: 300;
+		font-size: .7369em; //around 14px;
+		text-transform: uppercase;
+	}
+}
+
+table.project-table {
+	font-size: .843em; //Around 16px
+	thead th {
+		font-weight: 500;
+		background:#ececec;
+	}
+	tbody td {
+		font-weight: 300;
+		font-size: .85em; //Around 14px; 
+	}
+}
+
+//EDIT PROJECT
+form.edit-project {
+	img {
+		width: 100%;
+		max-width: intrinsic;
+	}
+}
+
+.well.project-photos {
+	background:none;
+	border-radius: 0;
+	box-shadow:none;
+	border:1px solid #e1e1e1;
+	h5.page-header {
+		padding-top: 0;
+		margin-top: 0;
+	}
+	img {
+		width: 100%;
+		max-width: intrinsic;
+		padding: 0;
+		border-radius: 0;
+	}
+	.edit-photo {
+		position: relative;
+	}
+	a.delete-photo {
+		border-radius: 1000px;
+		position: absolute;
+		top:-15px;
+		right: 0;
+		i {
+			padding: 2px 0px;
+		}
+	}
 }

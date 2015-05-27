@@ -77,29 +77,27 @@ class PagesController extends BaseController {
 	  * Display projects
 	  *
 	  **/
-	public function projects($filter = null, $single = null)
+	public function projects($category_id = null, $category_name = null, $single_id = null, $single_name = null)
 	{
-	
+		
 		/*PAGE INCLUDES*/
-		//If Filter Exists, save as Variable
-		if(isset($filter)) {
-			//Clean Name of Filter
-			$filterUnUrl = str_replace('-', ' ', $filter);
-			$cleanFilter = ucwords($filterUnUrl);
+		//Get Category
+		if($category_id) {
+			$category = Category::find($category_id);
 		}
-		if(isset($single)) {
-			//Clean Name of Project
-			$singleUnUrl = str_replace('-', ' ', $single);
-			$cleanSingle = ucwords($singleUnUrl);
+		//Get Single Project
+		if($single_id) {
+			$single = Project::find($single_id);
+		} else {
+			$single = null;
 		}
+		
 	
 		/*DISPLAY PAGE*/
 		return View::make('pages.projects', 
 					 compact(
-						 'filter', //Send Filter
-						 'cleanFilter', //Clean Name Of Filter
-						 'single', //Single Single
-						 'cleanSingle' //Clean Name of Single
+						 'category', // Get Category
+						 'single' // Get Single Project
 					 ));
 	
 	}

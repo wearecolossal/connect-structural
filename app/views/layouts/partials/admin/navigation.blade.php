@@ -15,21 +15,12 @@
 		
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse navbar-left" id="bs-example-navbar-collapse-1">
-		      <ul class="nav navbar-nav">
-		       <li class="{{ isActive('about') }}"><a href="{{ URL::to('about') }}">About Us</a></li>
-		       <li class="{{ isActive('team') }}"><a href="{{ URL::to('team') }}">Meet Our Team</a></li>
-		       <li class="{{ isActive('services') }}"><a href="{{ URL::to('services') }}">Services &amp; Registration</a></li>
-		       <li class="dropdown {{ isActive('projects') }}">
-		        	<a href="{{ URL::to('projects') }}">Projects</a>
-		        	<ul class="dropdown-menu hidden-xs" role="menu">
-		        		{{-- ITERATE THROUGH CATEGORIES --}}
-		        		@foreach(Category::all() as $category)
-		        		<li><a href="{{ URL::to('projects/'.$category->id.'/'.urlencode(strtolower(str_replace(' ', '-', $category->name)))) }}">{{ $category->name }}</a></li>
-		        		@endforeach
-		        	</ul>
-		       </li>
-		       <li class="{{ isActive('contact') }}"><a href="{{ URL::to('contact') }}">Contact</a></li>
-		      </ul>
+				<ul class="nav navbar-nav">
+					{{-- ONLY SHOW IF LOGGED IN --}}
+					@if(Auth::check())
+					<li><a href="{{ URL::to('logout') }}">Logout</a></li>
+					@endif
+				</ul>
 		    </div><!-- /.navbar-collapse -->
 	    </div>
 		<hr class="wood-divider" />
