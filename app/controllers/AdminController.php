@@ -139,7 +139,7 @@ class AdminController extends \BaseController {
 			// check if previous photo exists and delete it.
 			$project->deletePhoto($project->thumbnail, '/uploads/thumbnails/');
 			// generate a random file name
-			$filename = 'proj-thumb-'.urlencode(strtolower(str_replace('#', '', str_replace(':', '', str_replace(' ', '-', $input['name']))))).'-'.date('Y-m-d-H-i-s');
+			$filename = 'proj-thumb-'.urlencode(strtolower(str_replace('/', '',str_replace('#', '', str_replace(':', '', str_replace(' ', '-', $input['name'])))))).'-'.date('Y-m-d-H-i-s');
 			// assinged file input to a variable
 			$image = $input['thumbnail'];
 			// get original image file extension
@@ -239,7 +239,7 @@ class AdminController extends \BaseController {
 			// check if previous photo exists and delete it.
 			$project->deletePhoto($project->thumbnail, '/uploads/thumbnails/');
 			// generate a random file name
-			$filename = 'proj-thumb-'.urlencode(strtolower(str_replace('#', '', str_replace(':', '', str_replace(' ', '-', $input['name']))))).'-'.date('Y-m-d-H-i-s');
+			$filename = 'proj-thumb-'.urlencode(strtolower(str_replace('/', '',str_replace('#', '', str_replace(':', '', str_replace(' ', '-', $input['name'])))))).'-'.date('Y-m-d-H-i-s');
 			// assinged file input to a variable
 			$image = $input['thumbnail'];
 			// get original image file extension
@@ -316,7 +316,7 @@ class AdminController extends \BaseController {
 			// check if previous photo exists and delete it.
 			$project->deleteProjectPhoto($project->image, '/uploads/');
 			// generate a random file name
-			$filename = 'proj-'.urlencode(strtolower(str_replace('#', '', str_replace(':', '', str_replace(' ', '-', $p->name))))).'-'.date('Y-m-d-H-i-s');
+			$filename = 'proj-'.urlencode(strtolower(str_replace('/', '',str_replace('#', '', str_replace(':', '', str_replace(' ', '-', $p->name)))))).'-'.date('Y-m-d-H-i-s');
 			// assinged file input to a variable
 			$image = $input['photo'];
 			// get original image file extension
@@ -338,7 +338,7 @@ class AdminController extends \BaseController {
 			// check if previous photo exists and delete it.
 			$project->deleteProjectPhoto($project->thumbnails, '/uploads/thumbnails/');
 			// generate a random file name
-			$filename = 'proj-thumb-'.urlencode(strtolower(str_replace('#', '', str_replace(':', '', str_replace(' ', '-', $p->name))))).'-'.date('Y-m-d-H-i-s');
+			$filename = 'proj-thumb-'.urlencode(strtolower(str_replace('/', '',str_replace('#', '', str_replace(':', '', str_replace(' ', '-', $p->name)))))).'-'.date('Y-m-d-H-i-s');
 			// assinged file input to a variable
 			$image = $input['photo'];
 			// get original image file extension
