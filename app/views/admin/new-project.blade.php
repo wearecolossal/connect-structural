@@ -34,11 +34,8 @@
 				</div>
 				
 				<div class="form-group">
-					{{ Form::label('order', 'Project Order') }}
+
 					<div class="row">
-						<div class="col-md-4">
-							{{ Form::number('order', '', array('class' => 'form-control')) }}
-						</div>
 						<div class="col-md-12">
 						<hr />
 							<label>Category Thumbnail <a data-toggle="tooltip" data-placement="top" title="Feature This Project on the Project Listing Page?" class="explain"><i class="glyphicon glyphicon-question-sign"></i> </a> {{ Form::checkbox('category_featured', 1, 0, array('class' => 'form-control')) }}</label>

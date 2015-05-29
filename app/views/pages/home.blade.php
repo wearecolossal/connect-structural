@@ -13,18 +13,41 @@
 	<h4 class="page-header col-md-8 col-md-offset-2">Featured Projects</h4>
 	<div class="col-md-8 col-md-offset-2">
 		<div class="row">
-			<div class="featured-project col-md-6">
-				<img src="{{ URL::asset('library/img/img-featured-01.jpg') }}" alt="" />
-				<h5>WATERMARK SENIOR LIVING</h5>
-				<p>This project features a four-story, 150 unit senior living facility that includes a 35,000 square foot community center. Three stories of wood framing were constructed over a concrete podium that covered first floor parking.</p>
-				<a href="#">see more &raquo;</a>
-			</div>
-			<div class="featured-project col-md-6">
-				<img src="{{ URL::asset('library/img/img-featured-01.jpg') }}" alt="" />
-				<h5>NICOMA PARK MIDDLE SCHOOL</h5>
-				<p>Located in Nicoma Park, Oklahoma, this new addition includes a new 8,500 square foot administration wing, a new 8,500 square foot classroom wing that also serves as a tornado storm shelter, and a 3,500 square foot, stand-alone one story wrestling facility.</p>
-				<a href="#">see more &raquo;</a>
-			</div>
+			{{-- ITERATE THROUGH FEATURED PROJECTS --}}
+			@if(Project::where('featured', 1)->count() == 2)
+				@foreach(Project::where('featured', 1)->orderby('updated_at', 'asc')->get() as $project)
+				<div class="featured-project col-md-6">
+					<img src="{{ checkThumbnail($project->thumbnail) }}" alt="" />
+					<h5>{{ $project->name }}</h5>
+					<p>{{ $project->description }}</p>
+					<a href="{{ URL::to('projects/'.Category::find($project->category_id)->id.'/'.Category::find($project->category_id)->url.'/'.$project->id.'/'.urlencode(strtolower(str_replace(' ', '-', $project->name)))) }}">see more &raquo;</a>
+				</div>
+				@endforeach
+			{{-- IF ONLY ONE PROJECT FEATURED, SHOW THE FEATURED AND THE MOST RECENT --}}
+			@elseif(Project::where('featured', 1)->count() == 1)
+			{{-- IF NO PROJECTS FEATURED, TAKE THE 2 NEWEST PROJECTS --}}
+				<div class="featured-project col-md-6">
+					<img src="{{ checkThumbnail(Project::where('featured', 1)->first()->thumbnail) }}" alt="" />
+					<h5>{{ Project::where('featured', 1)->first()->name }}</h5>
+					<p>{{ Project::where('featured', 1)->first()->description }}</p>
+					<a href="{{ URL::to('projects/'.Category::find(Project::where('featured', 1)->first()->category_id)->id.'/'.Category::find(Project::where('featured', 1)->first()->category_id)->url.'/'.Project::where('featured', 1)->first()->id.'/'.urlencode(strtolower(str_replace(' ', '-', Project::where('featured', 1)->first()->name)))) }}">see more &raquo;</a>
+				</div>
+				<div class="featured-project col-md-6">
+					<img src="{{ checkThumbnail(Project::orderby('created_at', 'desc')->first()->thumbnail) }}" alt="" />
+					<h5>{{ Project::orderby('created_at', 'desc')->first()->name }}</h5>
+					<p>{{ Project::orderby('created_at', 'desc')->first()->description }}</p>
+					<a href="{{ URL::to('projects/'.Category::find(Project::orderby('created_at', 'desc')->first()->category_id)->id.'/'.Category::find(Project::orderby('created_at', 'desc')->first()->category_id)->url.'/'.Project::orderby('created_at', 'desc')->first()->id.'/'.urlencode(strtolower(str_replace(' ', '-', Project::orderby('created_at', 'desc')->first()->name)))) }}">see more &raquo;</a>
+				</div>
+			@else
+				@foreach(Project::orderby('updated_at', 'asc')->take(2)->get() as $project)
+				<div class="featured-project col-md-6">
+					<img src="{{ checkThumbnail($project->thumbnail) }}" alt="" />
+					<h5>{{ $project->name }}</h5>
+					<p>{{ $project->description }}</p>
+					<a href="{{ URL::to('projects/'.Category::find($project->category_id)->id.'/'.Category::find($project->category_id)->url.'/'.$project->id.'/'.urlencode(strtolower(str_replace(' ', '-', $project->name)))) }}">see more &raquo;</a>
+				</div>
+				@endforeach
+			@endif
 		</div>
 	</div>
 @stop

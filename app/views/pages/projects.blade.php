@@ -59,7 +59,7 @@ Projects
 		<div class="clearfix"></div>
 		<div class="row">
 			{{-- ITERATE THROUGH PROJECTS OF THIS CATEGORY --}}
-			@foreach(Project::where('category_id', $category->id)->where('archive', 0)->where('draft', 0)->orderby('order', 'asc')->get() as $project)
+			@foreach(Project::where('category_id', $category->id)->where('archive', 0)->where('draft', 0)->orderby('name', 'asc')->get() as $project)
 			<div class="project-list col-md-4">
 				<a href="{{ URL::to('projects/'.$category->id.'/'.urlencode(strtolower(str_replace(' ', '-', $category->name))).'/'.$project->id.'/'.urlencode(strtolower(str_replace(' ', '-', $project->name)))) }}"><img src="{{ checkThumbnail($project->thumbnail) }}" alt="" /></a>
 				<h4><a href="{{ URL::to('projects/'.$category->id.'/'.urlencode(strtolower(str_replace(' ', '-', $category->name))).'/'.$project->id.'/'.urlencode(strtolower(str_replace(' ', '-', $project->name)))) }}">{{ $project->name }}</a></h4>

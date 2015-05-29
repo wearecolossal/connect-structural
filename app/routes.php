@@ -41,6 +41,8 @@ Route::get('admin/project/{id}', 'AdminController@project');
 Route::get('admin/project/draft/{id}', 'AdminController@draftProject');
 //GET SINGLE PROJECT - ARCHIVE
 Route::get('admin/project/archive/{id}', 'AdminController@archiveProject');
+//FEATURE A PROJECT
+Route::get('admin/project/{id}/feature', 'AdminController@featureProject');
 //EDIT PROJECT
 Route::post('admin/project/{id}/edit', array('as' => 'project.edit', 'uses' => 'AdminController@editProject'));
 //UPLOAD PROJECT PHOTO

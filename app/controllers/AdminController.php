@@ -16,7 +16,7 @@ class AdminController extends \BaseController {
 		}
 		/*PAGE INCLUDES*/
 		//Use the Projects Table
-		$projects = Project::where('archive', 0)->where('draft', 0)->orderby('category_id', 'asc')->get();
+		$projects = Project::where('archive', 0)->where('draft', 0)->orderby('name', 'asc')->get();
 	
 		/*DISPLAY PAGE*/
 		return View::make('admin.index', 
@@ -168,8 +168,6 @@ class AdminController extends \BaseController {
 			$project->category_featured = NULL;
 		}
 		
-		//Project Order
-		$project->order = $input['order'];
 		//Project Name
 		$project->name = $input['name'];
 		//Project Description
@@ -271,8 +269,6 @@ class AdminController extends \BaseController {
 			$project->category_featured = NULL;
 		}
 		
-		//Project Order
-		$project->order = $input['order'];
 		//Project Name
 		$project->name = $input['name'];
 		//Project Description
@@ -388,6 +384,29 @@ class AdminController extends \BaseController {
 	    
 	    //return to page
 	    return Redirect::back();
+	
+	}
+	
+	/**
+	  * NON-VIEW FUNCTION
+	  * -----------------
+	  * Feature Project
+	  *
+	  **/
+	public function featureProject($id)
+	{
+	
+	    //Get Project
+	    $project = Project::find($id);
+	    //Toggle Featured Status
+	    if($project->featured == 1) {
+		    $project->featured = 0;
+	    } else {
+		    $project->featured = 1;
+	    }
+	    $project->save();
+	    
+	    return Redirect::back()->with(Session::flash('Success', '<strong>Feature Status Updated!</strong>'));
 	
 	}
 	
