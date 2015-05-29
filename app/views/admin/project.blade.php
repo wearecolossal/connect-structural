@@ -93,7 +93,7 @@
 				<div class="clearfix"></div>
 				{{ Form::file('photo') }}
 				<br />
-				{{ Form::submit('Upload Photo', array('class' => 'btn btn-primary')) }}
+				{{ Form::submit('Upload Photo', array('class' => 'btn btn-primary uploading-button', 'data-loading-text' => 'Uploading...Please Wait')) }}
 				<div class="clearfix"></div>
 			</div>
 			{{ Form::close() }}
@@ -148,6 +148,11 @@
 				    $('form.edit-project').submit();
 			    }, 500);
 			});
+			
+			$('.uploading-button').on('click', function () {
+			    var $btn = $(this).button('loading');
+
+			  })
 			
 		});
 	</script>
