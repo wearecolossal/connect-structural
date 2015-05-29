@@ -346,7 +346,7 @@ class AdminController extends \BaseController {
 			$extension = $image->getClientOriginalExtension();
 			// open image file
 			$photo = Image::make($image->getRealPath());
-			$photo->resize(680, null, function ($constraint) {
+			$photo->resize(960, null, function ($constraint) {
 			    $constraint->aspectRatio();
 			});
 			$photo->crop(480, 480);
