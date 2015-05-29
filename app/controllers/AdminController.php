@@ -222,7 +222,6 @@ class AdminController extends \BaseController {
 	    //Required Fields
 	    $required = array(
 		    $input['thumbnail'],
-		    $input['name'], 
 		    $input['order'],
 		    $input['description'],
 		    $input['category_id']
