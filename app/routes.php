@@ -31,8 +31,20 @@ Route::resource('login', 'SessionsController');
 Route::get('logout', 'SessionsController@destroy');
 //ADMIN HOMEPAGE
 Route::get('admin', 'AdminController@index');
+//NEW PROJECT PAGE
+Route::get('admin/project/new', 'AdminController@newProject');
+//CREATE NEW PROJECT
+Route::post('admin/project/new', 'AdminController@createNewProject');
 //GET SINGLE PROJECT
 Route::get('admin/project/{id}', 'AdminController@project');
+//GET SINGLE PROJECT - DRAFT
+Route::get('admin/project/draft/{id}', 'AdminController@draftProject');
+//GET SINGLE PROJECT - ARCHIVE
+Route::get('admin/project/archive/{id}', 'AdminController@archiveProject');
+//EDIT PROJECT
+Route::post('admin/project/{id}/edit', array('as' => 'project.edit', 'uses' => 'AdminController@editProject'));
+//UPLOAD PROJECT PHOTO
+Route::post('admin/project/photo/{id}/upload', array('as' => 'project.upload', 'uses' => 'AdminController@uploadPhoto'));
 //DELETE PROJECT PHOTO
 Route::get('admin/project/photo/{id}/delete', 'AdminController@deletePhoto');
 //HASH PASSWORD

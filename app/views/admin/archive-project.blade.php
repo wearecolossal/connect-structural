@@ -7,7 +7,7 @@
 @section('content')
 	
 	<div class="col-md-10 col-md-offset-1">
-		<h3 class="page-header">{{ $project->name }} <a href="{{ URL::to('admin') }}" class="btn btn-sm btn-default pull-right">Back to Projects</a><br /><br /></h4>
+		<h3 class="page-header">{{ $project->name }} <span class="label label-danger">ARCHIVED</span> <a href="{{ URL::to('admin') }}" class="btn btn-sm btn-default pull-right">Back to Projects</a><br /><br /></h4>
 		<div class="clearfix"></div>
 		@if(Session::get('Success'))
 			<div class="col-md-12 fade-away">
@@ -80,11 +80,7 @@
 					{{ Form::hidden('draft', $project->draft) }}
 					{{ Form::hidden('archive', $project->archive) }}
 					<br />
-					<a class="btn btn-sm btn-default draft-project">Save as Draft</a>
-					{{ Form::submit('Update Basic Project Details', array('class' => 'btn btn-sm btn-primary')) }}
-					<br />
-					<hr />
-					<a class="btn btn-sm btn-danger archive-project"><i class="glyphicon glyphicon-trash"></i> Archive</a>
+					<a class="btn btn-sm btn-success archive-project"><i class="glyphicon glyphicon-trash"></i> Reactivate</a>
 				</div>
 			{{ Form::close() }}
 		</div>
@@ -133,7 +129,7 @@
 				$(this).toggleClass('active');
 			    var hiddenField = $('input[name="draft"]'),
 			        val = hiddenField.val();
-					
+			
 			    hiddenField.val(val === "1" ? "0" : "1");
 			    setTimeout(function(){
 				    $('form.edit-project').submit();
@@ -151,7 +147,6 @@
 				    $('form.edit-project').submit();
 			    }, 500);
 			});
-			
 		});
 	</script>
 @stop

@@ -10,5 +10,16 @@ class Project extends Eloquent {
 	 */
 	protected $table = 'projects';
 
+	public function deletePhoto($filename, $source) {
+
+		if( File::exists( public_path() . $source . $filename) && !empty($filename) )
+		{
+			File::delete(public_path() . $source . $filename);
+
+			return true;
+		}
+
+		return false;
+	}
 
 }

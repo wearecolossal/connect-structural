@@ -18,7 +18,7 @@ Projects
 	{{-- SINGLE PROJECT VIEW --}}
 	@if(isset($single))
 		
-		<div class="row">
+		<div class="row" style="min-height:600px">
 			@if(ProjectPhoto::where('project_id', $single->id)->first())
 				<div class="col-md-7 proj-hero">
 					<img src="{{ URL::to('uploads') }}/{{ ProjectPhoto::where('project_id', $single->id)->orderby('id', 'asc')->first()->image }}" alt="" />
@@ -37,7 +37,7 @@ Projects
 						{{-- ITERATE THROUGH PROJECT PHOTOS --}}
 						<span class="hidden">{{ $iterator = 1; }}</span>
 						@foreach(ProjectPhoto::where('project_id', $single->id)->orderby('id', 'asc')->get() as $photo)
-							<div class="col-md-4"><a class="
+							<div class="col-md-4 col-sm-6 col-xs-6"><a class="
 							@if($iterator == 1)
 							active
 							@endif
@@ -59,7 +59,7 @@ Projects
 		<div class="clearfix"></div>
 		<div class="row">
 			{{-- ITERATE THROUGH PROJECTS OF THIS CATEGORY --}}
-			@foreach(Project::where('category_id', $category->id)->orderby('order', 'asc')->get() as $project)
+			@foreach(Project::where('category_id', $category->id)->where('archive', 0)->where('draft', 0)->orderby('order', 'asc')->get() as $project)
 			<div class="project-list col-md-4">
 				<a href="{{ URL::to('projects/'.$category->id.'/'.urlencode(strtolower(str_replace(' ', '-', $category->name))).'/'.$project->id.'/'.urlencode(strtolower(str_replace(' ', '-', $project->name)))) }}"><img src="{{ checkThumbnail($project->thumbnail) }}" alt="" /></a>
 				<h4><a href="{{ URL::to('projects/'.$category->id.'/'.urlencode(strtolower(str_replace(' ', '-', $category->name))).'/'.$project->id.'/'.urlencode(strtolower(str_replace(' ', '-', $project->name)))) }}">{{ $project->name }}</a></h4>
@@ -77,10 +77,18 @@ Projects
 		<div class="row">
 		{{-- ITERATE THROUGH CATEGORIES --}}
 		@foreach(Category::all() as $category)
-			<div class="project-list col-md-4">
-				<a href="{{ URL::to('projects/'.$category->id.'/'.urlencode(strtolower(str_replace(' ', '-', $category->name))).'/'.Project::where('category_id', $category->id)->orderby('created_at', 'desc')->first()->id.'/'.urlencode(strtolower(str_replace(' ', '-', Project::where('category_id', $category->id)->orderby('created_at', 'desc')->first()->name)))) }}"><img src="{{ checkThumbnail(Project::where('category_id', $category->id)->orderby('created_at', 'desc')->first()->thumbnail) }}" alt="" /></a>
-				<h4><a href="{{ URL::to('projects/'.$category->id.'/'.urlencode(strtolower(str_replace(' ', '-', $category->name))).'/'.Project::where('category_id', $category->id)->orderby('created_at', 'desc')->first()->id.'/'.urlencode(strtolower(str_replace(' ', '-', Project::where('category_id', $category->id)->orderby('created_at', 'desc')->first()->name)))) }}">{{ $category->name }}</a></h4>
+			{{-- CHECK IF FEATURED IS SET, IF NOT SHOW THE MOST RECENT PROJECT FOR THE CATEGORY --}}
+			@if(Project::where('category_id', $category->id)->where('category_featured', 1)->first())
+				<div class="project-list col-md-4">
+				<a href="{{ URL::to('projects/'.$category->id.'/'.$category->url) }}"><img src="{{ checkThumbnail(Project::where('category_id', $category->id)->where('category_featured', 1)->first()->thumbnail) }}" alt="" /></a>
+				<h4><a href="{{ URL::to('projects/'.$category->id.'/'.$category->url) }}">{{ $category->name }}</a></h4>
 			</div>
+			@else
+			<div class="project-list col-md-4">
+				<a href="{{ URL::to('projects/'.$category->id.'/'.$category->url) }}"><img src="{{ checkThumbnail(Project::where('category_id', $category->id)->where('archive', 0)->where('draft', 0)->orderby('created_at', 'desc')->first()->thumbnail) }}" alt="" /></a>
+				<h4><a href="{{ URL::to('projects/'.$category->id.'/'.$category->url) }}">{{ $category->name }}</a></h4>
+			</div>
+			@endif
 		@endforeach
 		</div>
 	@endif

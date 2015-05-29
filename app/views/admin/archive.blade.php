@@ -80,11 +80,11 @@
 					{{ Form::hidden('draft', $project->draft) }}
 					{{ Form::hidden('archive', $project->archive) }}
 					<br />
-					<a class="btn btn-sm btn-default draft-project">Save as Draft</a>
+					<a href="" class="btn btn-sm btn-default">Save as Draft</a>
 					{{ Form::submit('Update Basic Project Details', array('class' => 'btn btn-sm btn-primary')) }}
 					<br />
 					<hr />
-					<a class="btn btn-sm btn-danger archive-project"><i class="glyphicon glyphicon-trash"></i> Archive</a>
+					<a href="" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i> Archive</a>
 				</div>
 			{{ Form::close() }}
 		</div>
@@ -128,30 +128,7 @@
 			//Show Alert
 			$('a.explain').tooltip();
 			
-			//Draft Project
-			$('.draft-project').on('click', function() {
-				$(this).toggleClass('active');
-			    var hiddenField = $('input[name="draft"]'),
-			        val = hiddenField.val();
-					
-			    hiddenField.val(val === "1" ? "0" : "1");
-			    setTimeout(function(){
-				    $('form.edit-project').submit();
-			    }, 500);
-			});
-			
-			//Archive Project
-			$('.archive-project').on('click', function() {
-				$(this).toggleClass('active');
-			    var hiddenField = $('input[name="archive"]'),
-			        val = hiddenField.val();
-			
-			    hiddenField.val(val === "1" ? "0" : "1");
-			    setTimeout(function(){
-				    $('form.edit-project').submit();
-			    }, 500);
-			});
-			
+			//
 		});
 	</script>
 @stop
