@@ -27,7 +27,7 @@
 							<th colspan="2">Name</th>
 							<th>Category</th>
 							<th>Actions</th>
-							<th width="40">Feature</th>
+<!-- 							<th width="40">Feature</th> -->
 						</tr>
 					</thead>
 					<tbody>
@@ -40,13 +40,13 @@
 							<td><a href="{{ URL::to('admin/project/'.$project->id) }}"><i class="glyphicon glyphicon-pencil"></i> Edit</a></td>
 							{{-- toggle output of featured --}}
 							@if($project->featured == 1)
-								<td align="center" class="bg-warning"><a href="{{ URL::to('admin/project/'.$project->id.'/feature') }}" class="text-warning"><i class="glyphicon glyphicon-star"></i></a></td>
+<!-- 								<td align="center" class="bg-warning"><a href="{{ URL::to('admin/project/'.$project->id.'/feature') }}" class="text-warning"><i class="glyphicon glyphicon-star"></i></a></td> -->
 							@else
 								{{-- disable clicking on featured if number of featured project is 2 --}}
 								@if(Project::where('featured', 1)->count() == 2)
-								<td align="center" class="active"><span class="text-muted"><i class="glyphicon glyphicon-star-empty"></i></span></td>
+<!-- 								<td align="center" class="active"><span class="text-muted"><i class="glyphicon glyphicon-star-empty"></i></span></td> -->
 								@else
-								<td align="center"><a href="{{ URL::to('admin/project/'.$project->id.'/feature') }}" class="text-warning"><i class="glyphicon glyphicon-star-empty"></i></a></td>
+<!-- 								<td align="center"><a href="{{ URL::to('admin/project/'.$project->id.'/feature') }}" class="text-warning"><i class="glyphicon glyphicon-star-empty"></i></a></td> -->
 								@endif
 							@endif
 							

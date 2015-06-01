@@ -1,8 +1,35 @@
 @extends('layouts.master')
 	
 @section('content')
+	<div id="homepage-slideshow" class="carousel slide" data-ride="carousel">
+	  <!-- Indicators -->
+	  <ol class="carousel-indicators">
+	    <li data-target="#homepage-slideshow" data-slide-to="0" class="active"></li>
+	    <li data-target="#homepage-slideshow" data-slide-to="1"></li>
+	    <li data-target="#homepage-slideshow" data-slide-to="2"></li>
+	    <li data-target="#homepage-slideshow" data-slide-to="3"></li>
+	    <li data-target="#homepage-slideshow" data-slide-to="4"></li>
+	  </ol>
 	
-	<img src="{{ URL::asset('library/img/img-homepage.jpg') }}" style="width:100%;" alt="" />
+	  <!-- Wrapper for slides -->
+	  <div class="carousel-inner" role="listbox">
+	    <div class="item active">
+	      <img src="{{ URL::asset('library/img/img-homepage.jpg') }}" width="100%" alt="...">
+	    </div>
+	    <div class="item">
+	      <img src="{{ URL::asset('library/img/img-homepage-02.jpg') }}" width="100%" alt="...">
+	    </div>
+	     <div class="item">
+	      <img src="{{ URL::asset('library/img/img-homepage-03.jpg') }}" width="100%" alt="...">
+	    </div>
+	     <div class="item">
+	      <img src="{{ URL::asset('library/img/img-homepage-04.jpg') }}" width="100%" alt="...">
+	    </div>
+	     <div class="item">
+	      <img src="{{ URL::asset('library/img/img-homepage-05.jpg') }}" width="100%" alt="...">
+	    </div>
+	  </div>
+	</div>
 	<div class="clearfix"></div>
 	<div class="col-md-8 col-md-offset-2">
 		<br />
@@ -13,9 +40,8 @@
 	<h4 class="page-header col-md-8 col-md-offset-2">Featured Projects</h4>
 	<div class="col-md-8 col-md-offset-2">
 		<div class="row">
-			{{-- ITERATE THROUGH FEATURED PROJECTS --}}
-			@if(Project::where('featured', 1)->count() == 2)
-				@foreach(Project::where('featured', 1)->orderby('updated_at', 'asc')->get() as $project)
+
+				@foreach(Project::orderby(DB::raw('RAND()'))->take(2)->get() as $project)
 				<div class="featured-project col-md-6">
 					<img src="{{ checkThumbnail($project->thumbnail) }}" alt="" />
 					<h5>{{ $project->name }}</h5>
@@ -23,31 +49,7 @@
 					<a href="{{ URL::to('projects/'.Category::find($project->category_id)->id.'/'.Category::find($project->category_id)->url.'/'.$project->id.'/'.urlencode(strtolower(str_replace(' ', '-', $project->name)))) }}">see more &raquo;</a>
 				</div>
 				@endforeach
-			{{-- IF ONLY ONE PROJECT FEATURED, SHOW THE FEATURED AND THE MOST RECENT --}}
-			@elseif(Project::where('featured', 1)->count() == 1)
-			{{-- IF NO PROJECTS FEATURED, TAKE THE 2 NEWEST PROJECTS --}}
-				<div class="featured-project col-md-6">
-					<img src="{{ checkThumbnail(Project::where('featured', 1)->first()->thumbnail) }}" alt="" />
-					<h5>{{ Project::where('featured', 1)->first()->name }}</h5>
-					<p>{{ Project::where('featured', 1)->first()->description }}</p>
-					<a href="{{ URL::to('projects/'.Category::find(Project::where('featured', 1)->first()->category_id)->id.'/'.Category::find(Project::where('featured', 1)->first()->category_id)->url.'/'.Project::where('featured', 1)->first()->id.'/'.urlencode(strtolower(str_replace(' ', '-', Project::where('featured', 1)->first()->name)))) }}">see more &raquo;</a>
-				</div>
-				<div class="featured-project col-md-6">
-					<img src="{{ checkThumbnail(Project::orderby('created_at', 'desc')->first()->thumbnail) }}" alt="" />
-					<h5>{{ Project::orderby('created_at', 'desc')->first()->name }}</h5>
-					<p>{{ Project::orderby('created_at', 'desc')->first()->description }}</p>
-					<a href="{{ URL::to('projects/'.Category::find(Project::orderby('created_at', 'desc')->first()->category_id)->id.'/'.Category::find(Project::orderby('created_at', 'desc')->first()->category_id)->url.'/'.Project::orderby('created_at', 'desc')->first()->id.'/'.urlencode(strtolower(str_replace(' ', '-', Project::orderby('created_at', 'desc')->first()->name)))) }}">see more &raquo;</a>
-				</div>
-			@else
-				@foreach(Project::orderby('updated_at', 'asc')->take(2)->get() as $project)
-				<div class="featured-project col-md-6">
-					<img src="{{ checkThumbnail($project->thumbnail) }}" alt="" />
-					<h5>{{ $project->name }}</h5>
-					<p>{{ $project->description }}</p>
-					<a href="{{ URL::to('projects/'.Category::find($project->category_id)->id.'/'.Category::find($project->category_id)->url.'/'.$project->id.'/'.urlencode(strtolower(str_replace(' ', '-', $project->name)))) }}">see more &raquo;</a>
-				</div>
-				@endforeach
-			@endif
+			
 		</div>
 	</div>
 @stop

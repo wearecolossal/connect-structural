@@ -6738,6 +6738,9 @@ HOMEPAGE
 .featured-project h5 {
   color: #b2754a;
 }
+.featured-project iframe {
+  display: none;
+}
 /*=========================
 MEET OUR TEAM PAGE
 =========================*/
