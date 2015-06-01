@@ -3,7 +3,7 @@
 			<br /><br />
 			<div class="col-md-12 text-center">
 				<div class="col-md-4">
-					<p>CONNECT STRUCTURAL ENGINEERING INC.</p>
+					<p>CONNECT STRUCTURAL ENGINEERING, INC.</p>
 				</div>
 				<div class="col-md-3">
 					<p>9330 LBJ Freeway, Suite 1055</p>

@@ -14,7 +14,7 @@ Contact
 	<div class="col-md-5">
 		<h3>Contact</h3>
 		<p>
-		CONNECT STRUCTURAL ENGINEERING INC.<br />
+		CONNECT STRUCTURAL ENGINEERING, INC.<br />
 		9330 LBJ Freeway, Suite 1055<br />
 		Dallas, Texas 75243<br />
 		214.221.2220<br /><br />

@@ -85,8 +85,8 @@ Eastfield Junior College - Associate of Science - 2000</em></p>
 			</div>
 			
 			<div class="col-md-6 team-member">
-				<h4>Adam Phelps, E.I.T</h4>
-				<p style="padding-bottom:25px;"><em>Design Engineer</em><br />
+				<h4>Adam Phelps, P.E.</h4>
+				<p style="padding-bottom:25px;"><em>Project Manager</em><br />
 					<em><a href="mailto:aphelps@connectstructural.com">aphelps@connectstructural.com</a></em>
 				</p>
 				
