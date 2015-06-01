@@ -17,8 +17,10 @@ Contact
 		CONNECT STRUCTURAL ENGINEERING INC.<br />
 		9330 LBJ Freeway, Suite 1055<br />
 		Dallas, Texas 75243<br />
-		214.221.2220<br />
-		<a href="mailto:dparkin@connectstructural.com">dparkin@connectstructural.com</a><br />
+		214.221.2220<br /><br />
+		David Parkin, P.E.<br />
+		<a href="mailto:dparkin@connectstructural.com">dparkin@connectstructural.com</a><br /><br />
+		Chad Olson<br />
 		<a href="mailto:colsen@connectstructural.com">colsen@connectstructural.com</a>
 		</p>
 	</div>
