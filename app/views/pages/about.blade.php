@@ -9,7 +9,7 @@ About Us
 	<div class="col-md-9">
 		<h3>History</h3>
 		<p>
-			Connect Structural Engineering, Inc. (CSE) is an established structural engineering firm located in Dallas, Texas, founded in 1999.
+			Connect Structural Engineering, Inc. is an established structural engineering firm located in Dallas, Texas, founded in 1999.
 			<br /><br />
 			Our excellent standing in the local engineering community is grounded in our commitment to good communication, availability, and on-time project completion.
 		</p>
@@ -18,7 +18,7 @@ About Us
 	<div class="col-md-9">
 		<h3>Goal</h3>
 		<p>
-			Our goal is to provide the professional service and communication required to successfully take a project from its inception to its completion.  Our engineers and technicians are dedicated to working effectively with the developer, design team, and builder
+			Our goal is to provide the professional service and communication required to successfully take a project from its inception to its completion.  Our engineers and technicians are dedicated to working effectively with the developer, design team, and builder.
 		</p>
 	</div>
 	

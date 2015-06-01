@@ -18,7 +18,7 @@
 		      <ul class="nav navbar-nav">
 		       <li class="{{ isActive('about') }}"><a href="{{ URL::to('about') }}">About Us</a></li>
 		       <li class="{{ isActive('team') }}"><a href="{{ URL::to('team') }}">Meet Our Team</a></li>
-		       <li class="{{ isActive('services') }}"><a href="{{ URL::to('services') }}">Services &amp; Registration</a></li>
+		       <li class="{{ isActive('services') }}"><a href="{{ URL::to('services') }}">Services &amp; Registrations</a></li>
 		       <li class="dropdown {{ isActive('projects') }}">
 		        	<a href="{{ URL::to('projects') }}">Projects</a>
 		        	<ul class="dropdown-menu hidden-xs" role="menu">

@@ -33,11 +33,11 @@ Services & Registration
 					<li>ARKANSAS</li>
 					<li>ALABAMA</li>
 					<li>COLORADO</li>
-					<li>FLORDIA</li>
+					<li>FLORIDA</li>
 					<li>GEORGIA</li>
 					<li>IOWA</li>
 					<li>KANSAS</li>
-					<li>LOUISANA</li>
+					<li>LOUISIANA</li>
 					<li>MARYLAND</li>
 					<li>MICHIGAN</li>
 					<li>MISSISSIPPI</li>

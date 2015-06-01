@@ -15,6 +15,7 @@ Meet Our Team
 				<img src="{{ URL::asset('library/img/team-parkin.jpg') }}" alt="" />
 				<h4>DAVID PARKIN, P.E.</h4>
 				<p><em>Principal Engineering<br />
+					<a href="mailto:dparkin@connectstructural.com">dparkin@connectstructural.com</a><br />
 Texas A&M University - Master of Engineering - 1986<br />
 Oregon State University - Bachelor of Engineering - 1984</em></p>
 				<p>David offers 30 years of experience in structural engineering, construction administration, and technical writing.</p>
@@ -27,6 +28,7 @@ Oregon State University - Bachelor of Engineering - 1984</em></p>
 				<img src="{{ URL::asset('library/img/team-olsen.jpg') }}" alt="" />
 				<h4>CHAD OLSEN</h4>
 				<p><em>Principal Production<br />
+				<a href="mailto:colsen@connectstructural.com">colsen@connectstructural.com</a><br />
 NEC Technical College - Associate of Science - 1989</em></p>
 				<p>Chad leads our production team and offers 25 years of experience in structural design, contract documents and IT management.</p> 
 
@@ -40,6 +42,7 @@ NEC Technical College - Associate of Science - 1989</em></p>
 				<img src="{{ URL::asset('library/img/team-cole.jpg') }}" alt="" />
 				<h4>NATHAN COLE, P.E.</h4>
 				<p><em>Associate, Project Manager<br />
+				<a href="mailto:ncole@connectstructural.com">ncole@connectstructural.com</a><br />
 University of Oklahoma - Bachelor of Engineering - 2007</em></p>
 				<p>Nathan joined us in 2007.</p>  
 
@@ -54,6 +57,7 @@ University of Oklahoma - Bachelor of Engineering - 2007</em></p>
 				<img src="{{ URL::asset('library/img/team-anderson.jpg') }}" alt="" />
 				<h4>SEAN ANDERSON, P.E.</h4>
 				<p><em>Associate, Project Manager<br />
+				<a href="mailto:sanderson@connectstructural.com">sanderson@connectstructural.com</a><br />
 Southern Methodist University - Master of Engineering - 2006<br />
 Texas Tech University - Bachelor of Engineering - 2004</em></p>
 				<p>Sean joined us in 2008.</p>
@@ -71,6 +75,7 @@ Texas Tech University - Bachelor of Engineering - 2004</em></p>
 				<img src="{{ URL::asset('library/img/team-titus.jpg') }}" alt="" />
 				<h4>NEAL TITUS</h4>
 				<p><em>Senior Production Manager<br />
+				<a href="mailto:ntitus@connectstructural.com">ntitus@connectstructural.com</a><br />
 Eastfield Junior College - Associate of Science - 2000</em></p>
 				<p>Neal joined us in 2004.</p>
 
@@ -81,22 +86,34 @@ Eastfield Junior College - Associate of Science - 2000</em></p>
 			
 			<div class="col-md-6 team-member">
 				<h4>Adam Phelps, E.I.T</h4>
-				<p style="padding-bottom:25px;"><em>Design Engineer</em></p>
+				<p style="padding-bottom:25px;"><em>Design Engineer</em><br />
+					<em><a href="mailto:aphelps@connectstructural.com">aphelps@connectstructural.com</a></em>
+				</p>
 				
 				<h4>Conrad Lovejoy, E.I.T</h4>
-				<p style="padding-bottom:25px;"><em>Design Engineer</em></p>
+				<p style="padding-bottom:25px;"><em>Design Engineer</em><br />
+					<em><a href="mailto:clovejoy@connectstructural.com">clovejoy@connectstructural.com</a></em>
+				</p>
 				
 				<h4>Jeremy Zaluski, E.I.T</h4>
-				<p style="padding-bottom:25px;"><em>Design Engineer</em></p>
+				<p style="padding-bottom:25px;"><em>Design Engineer</em><br />
+					<em><a href="mailto:jzaluski@connectstructural.com">jzaluski@connectstructural.com</a></em>
+				</p>
 				
 				<h4>Andrew Hollien</h4>
-				<p style="padding-bottom:25px;"><em>Production</em></p>
+				<p style="padding-bottom:25px;"><em>Production</em><br />
+					<em><a href="mailto:ahollien@connectstructural.com">ahollien@connectstructural.com</a></em>
+				</p>
 				
 				<h4>Ben Magana</h4>
-				<p style="padding-bottom:25px;"><em>Production</em></p>
+				<p style="padding-bottom:25px;"><em>Production</em><br />
+					<em><a href="mailto:bmagana@connectstructural.com">bmagana@connectstructural.com</a></em>
+				</p>
 				
 				<h4>Pam Cashion</h4>
-				<p style="padding-bottom:25px;"><em>Accounting</em></p>
+				<p style="padding-bottom:25px;"><em>Accounting</em><br />
+					<em><a href="mailto:pcashion@connectstructural.com">pcashion@connectstructural.com</a></em>
+				</p>
 
 			</div>
 		

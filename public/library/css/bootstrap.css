@@ -6785,7 +6785,7 @@ PROJECTS
   display: block;
 }
 .proj-details .proj-description {
-  border-left: 2px solid #000;
+  border-left: 2px solid #888888;
   margin-left: -15px;
   padding-left: 15px;
   padding-top: 10px;
