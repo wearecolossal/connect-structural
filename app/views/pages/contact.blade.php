@@ -20,7 +20,7 @@ Contact
 		214.221.2220<br /><br />
 		David Parkin, P.E.<br />
 		<a href="mailto:dparkin@connectstructural.com">dparkin@connectstructural.com</a><br /><br />
-		Chad Olson<br />
+		Chad Olsen<br />
 		<a href="mailto:colsen@connectstructural.com">colsen@connectstructural.com</a>
 		</p>
 	</div>
