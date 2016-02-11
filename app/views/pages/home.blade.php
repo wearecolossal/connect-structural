@@ -41,7 +41,7 @@
 	<div class="col-md-8 col-md-offset-2">
 		<div class="row">
 
-				@foreach(Project::orderby(DB::raw('RAND()'))->take(2)->get() as $project)
+				@foreach(Project::where('archive', 0)->orderby(DB::raw('RAND()'))->take(2)->get() as $project)
 				<div class="featured-project col-md-6">
 					<img src="{{ checkThumbnail($project->thumbnail) }}" alt="" />
 					<h5>{{ $project->name }}</h5>
