@@ -37,6 +37,7 @@ Services & Registration
 					<li>GEORGIA</li>
 					<li>IOWA</li>
 					<li>KANSAS</li>
+					<li>KENTUCKY</li>
 					<li>LOUISIANA</li>
 					<li>MARYLAND</li>
 					<li>MICHIGAN</li>
