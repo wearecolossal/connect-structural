@@ -41,7 +41,7 @@ Projects
 							@if($iterator == 1)
 							active
 							@endif
-							project-photo" data-iterator="{{ $iterator++ }}" data-photo="{{ URL::asset('uploads/'.$photo->image) }}"><img src="{{ URL::asset('uploads/thumbnails/'.$photo->thumbnail) }}" alt="" /></a><br /><br /></div>
+							project-photo" data-iterator="{{ $iterator++ }}" data-photo="{{ URL::asset('uploads/'.$photo->image) }}"><img src="{{ URL::asset('uploads/thumbnails/'.$photo->thumbnail) }}" alt="" /><div class="clearfix"></div></a><br /><br /></div>
 						@endforeach
 					</div>
 					<div class="clearfix"></div>
