@@ -69,7 +69,7 @@
         <div class="clearfix"></div>
         <div class="row">
             <?php
-            $counter = 1;
+            $counter = 0;
             ?>
             {{-- ITERATE THROUGH PROJECTS OF THIS CATEGORY --}}
             @foreach(Project::where('category_id', $category->id)->where('archive', 0)->where('draft', 0)->orderby('name', 'asc')->get() as $project)
@@ -100,7 +100,7 @@
             {{-- ITERATE THROUGH CATEGORIES --}}
             @foreach(Category::all() as $category)
                 <?php
-                $counter = 1;
+                $counter = 0;
                 ?>
                 {{-- CHECK IF FEATURED IS SET, IF NOT SHOW THE MOST RECENT PROJECT FOR THE CATEGORY --}}
                 @if(Project::where('category_id', $category->id)->where('category_featured', 1)->first())
